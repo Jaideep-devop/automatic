@@ -1,0 +1,55 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  Default
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'Azure for Students (865bcc00-2a24-4188-b8c4-2d968f54d241)'
+    ScriptType: 'InlineScript'
+    Inline: |
+      # Input parameter for
+      # - VmName: vm
+      # - ResourceGroupName: automatic
+      # - vmAction:action to perform (startup or shutdown)
+      param(
+          [string]$VmName,
+          [string]$ResourceGroupName,
+          [ValidateSet("startup", "shutdown")]
+          [string]$VmAction
+      )
+      
+      $connectionName = "AzureRunAsConnection"
+          # Get the connection "AzureRunAsConnection "
+          $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
+      
+          "Logging in to Azure..."
+          Add-AzureRmAccount `
+              -ServicePrincipal `
+              -TenantId $servicePrincipalConnection.TenantId `
+              -ApplicationId $servicePrincipalConnection.ApplicationId `
+              -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
+      # Startup VM
+      IF ($VmAction -eq "Startup") {
+          Start-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName
+      }
+      
+      # Shutdown VM
+      IF ($VmAction -eq "shutdown") {
+          Stop-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName -Force
+      }
+    preferredAzurePowerShellVersion: '2*'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
