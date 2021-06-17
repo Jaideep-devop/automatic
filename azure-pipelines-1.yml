@@ -14,5 +14,5 @@ steps:
      inputs:
        azureSubscription: 'Azure for Students (865bcc00-2a24-4188-b8c4-2d968f54d241)'
        ScriptType: 'FilePath'
-       ScriptPath: '$(System.DefaultWorkingDirectory)\test.ps1'
+       ScriptPath: '*\test.ps1'
        azurePowerShellVersion: 'LatestVersion'
