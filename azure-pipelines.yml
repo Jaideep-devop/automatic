@@ -8,7 +8,8 @@ trigger:
 
 pool:
   Default
--steps:
+
+-Steps:
 - task: AzurePowerShell@5
   inputs:
     azureSubscription: 'Azure for Students (865bcc00-2a24-4188-b8c4-2d968f54d241)-6546'
