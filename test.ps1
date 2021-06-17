@@ -1,1 +1,1 @@
-Write-Host "Hello World"
+Start- VM -Name 'vm' -ResourceGroupName 'azvirtualmachine'
