@@ -1,0 +1,30 @@
+# Input parameter for
+# - VmName: vm
+# - ResourceGroupName: automatic
+# - vmAction:action to perform (startup or shutdown)
+param(
+    [string]$VmName,
+    [string]$ResourceGroupName,
+    [ValidateSet("startup", "shutdown")]
+    [string]$VmAction
+)
+
+$connectionName = "AzureRunAsConnection"
+    # Get the connection "AzureRunAsConnection "
+    $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
+
+    "Logging in to Azure..."
+    Add-AzureRmAccount `
+        -ServicePrincipal `
+        -TenantId $servicePrincipalConnection.TenantId `
+        -ApplicationId $servicePrincipalConnection.ApplicationId `
+        -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
+# Startup VM
+IF ($VmAction -eq "Startup") {
+    Start-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName
+}
+
+# Shutdown VM
+IF ($VmAction -eq "shutdown") {
+    Stop-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName -Force
+}
