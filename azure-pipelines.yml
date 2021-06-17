@@ -8,11 +8,19 @@ trigger:
 
 pool:
   Default
-- task: AzurePowerShell@5
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: PowerShell@2
   inputs:
-    azureSubscription: 'Azure for Students (865bcc00-2a24-4188-b8c4-2d968f54d241)'
-    ScriptType: 'InlineScript'
-    Inline: |
+    targetType: 'inline'
+    script: |
       # Input parameter for
       # - VmName: vm
       # - ResourceGroupName: automatic
@@ -43,13 +51,3 @@ pool:
       IF ($VmAction -eq "shutdown") {
           Stop-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName -Force
       }
-    preferredAzurePowerShellVersion: '2*'
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
