@@ -14,7 +14,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      param([string]$VmName,[string]$ResourceGroupName,[ValidateSet("startup", "shutdown")],[string]$VmAction)
+      param([string]$VmName,[string]$ResourceGroupName,[string]$VmAction)
       IF ($VmAction -eq "Startup") {
           Start-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName
       }
