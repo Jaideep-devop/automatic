@@ -10,7 +10,7 @@ pool:
   Default
 
 steps:
-  - task: PowerShell@2
-    inputs:
-      targetType: 'inline'
-      script: Start-AzureRMVM -Name Vm -ResourceGroupName azvirtualmachine
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Start-VM  -Name vm -ResourceGroupName azvirtualmachine'
