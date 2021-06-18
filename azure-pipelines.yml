@@ -8,7 +8,6 @@ trigger:
 
 pool:
   window
-
 -Steps:
 - task: AzurePowerShell@5
   inputs:
