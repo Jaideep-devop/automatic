@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  window
+  Default
 
 -Steps:
 - task: AzurePowerShell@5
