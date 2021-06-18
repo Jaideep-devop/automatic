@@ -10,16 +10,16 @@ pool:
   Default
 
 Steps:
-- task: AzurePowerShell@5
-  inputs:
-    azureSubscription: 'Azure for Students (865bcc00-2a24-4188-b8c4-2d968f54d241)-6546'
-    ScriptType: 'InlineScript'
-    Inline: |
+  - task: AzurePowerShell@5
+    inputs:
+      azureSubscription: 'Azure for Students (865bcc00-2a24-4188-b8c4-2d968f54d241)-6546'
+      ScriptType: 'InlineScript'
+      Inline: |
       -EnvironmentName: "AzureCloud",
       -TenantId: "2580f19d-0c06-493f-a534-a5987bfa9c05",
       -id: "865bcc00-2a24-4188-b8c4-2d968f54d241",
       Start-AzureRMVM -Name Vm -ResourceGroupName azvirtualmachine
-    azurePowerShellVersion: 'LatestVersion'
+      azurePowerShellVersion: 'LatestVersion'
 
 
 
