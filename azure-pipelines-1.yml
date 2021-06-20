@@ -21,10 +21,10 @@ variables:
     targetType: 'inline'
     script: |
 
-      IF ($Vmaction -eq "Startup") {
+      IF (${{ variables.Vmaction }} -eq "Startup") {
           Start-AzVM -Name $vmname -ResourceGroupName $resourcegroupname
       }
-      IF ($Vmaction -eq "shutdown") {
+      IF (${{ variables.Vmaction }} -eq "shutdown") {
           Stop-AzVM -Name $vmname -ResourceGroupName $resourcegroupname -Force
       }
   
