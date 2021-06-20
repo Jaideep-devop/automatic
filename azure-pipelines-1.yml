@@ -14,11 +14,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Param([string]$VmName,[string]$ResourceGroupName,[string]$VmAction)
       IF ($VmAction -eq "Startup") {
-          Start-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName
+          Start-AzVM -Name $VmName -ResourceGroupName $ResourceGroupName
       }
       IF ($VmAction -eq "shutdown") {
-          Stop-AzureRMVM -Name $VmName -ResourceGroupName $ResourceGroupName -Force
+          Stop-AzVM -Name $VmName -ResourceGroupName $ResourceGroupName -Force
       }
   
