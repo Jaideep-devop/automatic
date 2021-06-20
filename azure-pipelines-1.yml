@@ -14,13 +14,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-    param(
-    [string]$VmName,
-    [string]$ResourceGroupName,
-    [ValidateSet("startup", "shutdown")]
-    [string]$VmAction
-    )
-    IF ($(Vmaction) -eq "Startup") {
+    IF ($(Vmaction) -eq Startup) {
           Start-AzVM -Name $(vmname) -ResourceGroupName $(resourcegroupname)
       }
       IF ($(Vmaction) -eq "shutdown") {
