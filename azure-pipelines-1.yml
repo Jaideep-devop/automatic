@@ -9,14 +9,13 @@ trigger:
 pool:
   Default
 
+
 steps:
-
-
-- task: PowerShell@2
 variables:
  -name: Vmaction
   value: Startup
-   
+  
+- task: PowerShell@2 
   inputs:
     targetType: 'inline'
     script: |
