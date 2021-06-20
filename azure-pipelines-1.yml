@@ -14,9 +14,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-    IF ($(Vmaction) -eq "Startup") {
+    IF ([string]$(Vmaction) -eq "Startup") {
           Start-AzVM -Name $(vmname) -ResourceGroupName $(resourcegroupname)
       }
-      IF ($(Vmaction) -eq "shutdown") {
+      IF ([string]$(Vmaction) -eq "shutdown") {
           Stop-AzVM -Name $(vmname) -ResourceGroupName $(resourcegroupname) -Force
       }
