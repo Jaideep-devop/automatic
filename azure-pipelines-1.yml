@@ -14,12 +14,8 @@ steps:
 
 - task: PowerShell@2
 variables:
-  name: Vmaction
+ -name: Vmaction
   value: Startup
-  name: vmname
-  value: vmm
-  name: resourcegroupname
-  value: azvirtualmachine
    
   inputs:
     targetType: 'inline'
