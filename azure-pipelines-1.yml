@@ -9,13 +9,18 @@ trigger:
 pool:
   Default
 
-
 steps:  
 - task: PowerShell@2 
   inputs:
     targetType: 'inline'
     script: |
-      IF ($(Vmaction) -eq "Startup") {
+    param(
+    [string]$VmName,
+    [string]$ResourceGroupName,
+    [ValidateSet("startup", "shutdown")]
+    [string]$VmAction
+    )
+    IF ($(Vmaction) -eq "Startup") {
           Start-AzVM -Name $(vmname) -ResourceGroupName $(resourcegroupname)
       }
       IF ($(Vmaction) -eq "shutdown") {
