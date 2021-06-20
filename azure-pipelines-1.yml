@@ -11,7 +11,7 @@ pool:
 
 
 steps:
-variables:
+parameters:
  -name: Vmaction
   value: Startup
   
