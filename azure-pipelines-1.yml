@@ -14,10 +14,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      IF ($VmAction -eq "Startup") {
+      IF (${env:VMACTION} -eq "Startup") {
           Start-AzVM -Name $VmName -ResourceGroupName $ResourceGroupName
       }
-      IF ($VmAction -eq "shutdown") {
+      IF (${env:VMACTION} -eq "shutdown") {
           Stop-AzVM -Name $VmName -ResourceGroupName $ResourceGroupName -Force
       }
   
