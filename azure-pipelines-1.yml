@@ -20,4 +20,3 @@ steps:
       IF ($(Vmaction) -eq shutdown) {
           Stop-AzVM -Name $(vmname) -ResourceGroupName $(resourcegroupname) -Force
       }
-  
