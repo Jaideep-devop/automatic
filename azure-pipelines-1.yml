@@ -15,10 +15,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      IF (${{ variables.Vmaction }} -eq "Startup") {
+      IF ($Vmaction -eq "Startup") {
           Start-AzVM -Name $vmname -ResourceGroupName $resourcegroupname
       }
-      IF (${{ variables.Vmaction }} -eq "shutdown") {
+      IF ($Vmaction -eq "shutdown") {
           Stop-AzVM -Name $vmname -ResourceGroupName $resourcegroupname -Force
       }
   
