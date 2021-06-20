@@ -10,11 +10,7 @@ pool:
   Default
 
 
-steps:
-parameters:
- -name: Vmaction
-  value: Startup
-  
+steps:  
 - task: PowerShell@2 
   inputs:
     targetType: 'inline'
